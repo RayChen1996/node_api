@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "79222812-dd69-422a-b514-126f3ca05455",
+		"name": "mission2-mongoose",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12011956"
+	},
+	"item": [
+		{
+			"name": "取得所有貼文",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://node-api-va51.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"node-api-va51",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增單筆貼文",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\":\"測試測試內文內文內文\",\n    \"name\":\"raychen\",\n    \"likes\":10,\n    \"comment\":15\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-va51.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"node-api-va51",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://node-api-va51.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"node-api-va51",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://node-api-va51.onrender.com/posts/663b25e3d3d7825bdfb75403",
+					"protocol": "https",
+					"host": [
+						"node-api-va51",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"663b25e3d3d7825bdfb75403"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單筆貼文",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\":\"update\",\n    // \"name\":\"new name\",\n    \"tags\":[\"心情\",\"旅遊\"]\n    // \"likes\":123,\n    // \"comment\":456\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-va51.onrender.com/posts/663b25f0d3d7825bdfb75406",
+					"protocol": "https",
+					"host": [
+						"node-api-va51",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"663b25f0d3d7825bdfb75406"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
