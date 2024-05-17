@@ -13,7 +13,7 @@ const posts = {
       const data = body;
       if (data.content !== undefined) {
         const newPost = await Post.create({
-          content: data.content,
+          content: data.content.trim(),
           name: data.name,
           tags: data.tags,
           likes: data.likes,
@@ -34,6 +34,7 @@ const posts = {
   async deleteOne(req, res) {
     try {
       const id = req.url.split("/").pop();
+      console.log("Request  id  :", id);
       const isExist = await Post.findById(id);
       if (isExist) {
         await Post.findByIdAndDelete(id);
@@ -47,16 +48,19 @@ const posts = {
       handleError(res, error);
     }
   },
-  async updatePost({ req, res, body }) {
+  async updatePost(req, res, body) {
     try {
-      const data = JSON.parse(body);
       const id = req.url.split("/").pop();
+      console.log("Request  id  :", id);
+      const data = req.body;
+
       const isExist = await Post.findById(id);
+      console.log("Request  body  :", req.body);
       if (data !== undefined && isExist) {
-        const updatePost = await Post.findByIdAndUpdate(
+        const updatedPost = await Post.findByIdAndUpdate(
           id,
           {
-            content: data.content,
+            content: data.content.trim(),
             name: data.name,
             tags: data.tags,
             likes: data.likes,
@@ -64,12 +68,12 @@ const posts = {
           },
           { new: true }
         );
-        handleSuccess(res, updatePost);
+        handleSuccess(res, updatedPost);
       } else {
-        handleError(res);
+        handleError(res, "Post not found or data is undefined");
       }
-    } catch {
-      handleError(res);
+    } catch (error) {
+      handleError(res, error);
     }
   },
 };

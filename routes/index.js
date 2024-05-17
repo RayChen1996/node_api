@@ -46,7 +46,7 @@ const PostsControllers = require("../controllers/post");
 // };
 
 const router = express.Router();
-
+router.use(express.json());
 // GET home page.
 router.get("/", (req, res, next) => {
   res.render("index", { title: "Express" });
@@ -58,8 +58,8 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/posts", (req, res) => {
-  console.log("POST /posts called");
-  console.log("Request body:", req.body);
+  // console.log("POST /posts called");
+  // console.log("Request body:", req.body);
   PostsControllers.createPosts(req, res);
 });
 
@@ -72,14 +72,10 @@ router.delete("/posts/:id", (req, res) => {
 });
 
 router.patch("/posts/:id", (req, res) => {
-  let body = "";
-  req.on("data", (chunk) => {
-    body += chunk;
-  });
-  req.on("end", () => {
-    req.body = body ? JSON.parse(body) : {};
-    PostsControllers.updatePost(req, res);
-  });
+  // console.log("PATCH /posts/:id called");
+  // console.log("Request params:", req.params.id); // Log params to verify
+  // console.log("Request body:", req.body); // Log body to verify
+  PostsControllers.updatePost(req, res);
 });
 
 // Handle OPTIONS requests
