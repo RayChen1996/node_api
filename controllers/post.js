@@ -7,11 +7,10 @@ const posts = {
   async getPosts(req, res) {
     const allPosts = await Post.find();
     handleSuccess(res, allPosts);
-    res.end();
   },
   async createPosts({ req, res, body }) {
     try {
-      const data = JSON.parse(body);
+      const data = body;
       if (data.content !== undefined) {
         const newPost = await Post.create({
           content: data.content,
@@ -22,7 +21,7 @@ const posts = {
         });
         handleSuccess(res, newPost);
       } else {
-        handleError(res);
+        handleError(res, "Content is undefined");
       }
     } catch (error) {
       handleError(res, error);
